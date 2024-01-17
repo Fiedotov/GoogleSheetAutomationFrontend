@@ -69,8 +69,11 @@ const AnalyticsTable = () => {
                 console.error('Error fetching data:', error);
             }
         };
-
         fetchData();
+        const interval = setInterval(fetchData, 60000); // 60000 milliseconds = 1 minute
+
+        // Cleanup function to clear the interval when the component unmounts
+        return () => clearInterval(interval);
     }, []);
 
     useEffect(() => {
