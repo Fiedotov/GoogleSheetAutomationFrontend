@@ -61,7 +61,7 @@ const AnalyticsTable = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('http://localhost:3000/analytics-data');
+                const response = await fetch('http://95.164.44.248:3000/analytics-data');
                 const jsonData = await response.json();
                 setData(jsonData);
                 setUniqueSheetNames(['ALL', ...new Set(jsonData.map(item => item.sheetName))]);
