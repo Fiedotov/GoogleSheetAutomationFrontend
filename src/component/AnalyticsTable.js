@@ -178,18 +178,18 @@ const AnalyticsTable = () => {
     return (
         <Styles>
             <div>
-            <p>
-                Start Date:
-                <span style={{marginLeft: 10}}>
-                    <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} /> 
-                </span>
-                 <span style={{marginLeft: 10}}>
-                    End Date:
+                <p>
+                    Start Date:
                     <span style={{marginLeft: 10}}>
-                    <DatePicker  selected={startDate} onChange={(date) => setStartDate(date)} />
+                        <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} /> 
                     </span>
-                 </span>
-            </p>
+                    <span style={{marginLeft: 10}}>
+                        End Date:
+                        <span style={{marginLeft: 10}}>
+                        <DatePicker  selected={startDate} onChange={(date) => setStartDate(date)} />
+                        </span>
+                    </span>
+                </p>
             </div>
             <div className="filters">
                 {/* Sheet Name Filter */}
