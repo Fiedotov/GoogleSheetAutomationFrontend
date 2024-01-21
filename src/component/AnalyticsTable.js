@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import FusionCharts from "fusioncharts";
+import charts from "fusioncharts/fusioncharts.charts";
+import ReactFusioncharts from "react-fusioncharts";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
-// Styled-components for the table and filters
+charts(FusionCharts);
+
+
 const Styles = styled.div`
 padding: 1rem;
 
@@ -112,8 +119,78 @@ const AnalyticsTable = () => {
 
         setSummedData(sums);
     }, [selectedSheetName, selectedSid, selectedSsid, data]);
+
+    const dataSource = {
+        chart: {
+          caption: "Percent of views",
+          showvalues: "1",
+          showpercentintooltip: "0",
+          enablemultislicing: "1",
+          theme: "candy"
+        },
+        data: [
+          {
+            label: "RDV",
+            value: summedData["RDV"] || 0,
+            valuePosition: "outside",
+          },
+          {
+            label: "A Rappeler",
+            value: summedData["A Rappeler"] || 0
+          },
+          {
+            label: "NRP",
+            value: summedData["NRP"] || 0
+          },
+          {
+            label: "Pas intéressé",
+            value: summedData["Pas intéressé"] || 0
+          }
+          ,
+          {
+            label: "Locataire",
+            value: summedData["Locataire"] || 0
+          }
+          ,
+          {
+            label: "Pas la bonne personne",
+            value: summedData["Pas la bonne personne"] || 0
+          }
+          ,
+          {
+            label: "Demande pour autre produit",
+            value: summedData["Demande pour autre produit"] || 0
+          }
+          ,
+          {
+            label: "Déjà installé",
+            value: summedData["Déjà installé"] || 0
+          }
+          ,
+          {
+            label: "Abandon de projet",
+            value: summedData["Abandon de projet"] || 0
+          }
+        ]
+      };
+    
+      const [startDate, setStartDate] = useState(new Date());
     return (
         <Styles>
+            <div>
+                <p>
+                    Start Date:
+                    <span style={{marginLeft: 10}}>
+                        <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} /> 
+                    </span>
+                    <span style={{marginLeft: 10}}>
+                        End Date:
+                        <span style={{marginLeft: 10}}>
+                        <DatePicker  selected={startDate} onChange={(date) => setStartDate(date)} />
+                        </span>
+                    </span>
+                </p>
+            </div>
             <div className="filters">
                 {/* Sheet Name Filter */}
                 <select value={selectedSheetName} onChange={e => setSelectedSheetName(e.target.value)}>
@@ -169,6 +246,13 @@ const AnalyticsTable = () => {
                     )}
                 </tbody>
             </table>
+            <ReactFusioncharts
+                    type="pie2d"
+                    width={1000}
+                    height={600}
+                    dataFormat="JSON"
+                    dataSource={dataSource}
+                />
         </Styles>
     );
 }
