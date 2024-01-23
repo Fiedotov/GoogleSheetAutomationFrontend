@@ -239,6 +239,11 @@ const AnalyticsTable = () => {
                 label: "Abandon de projet",
                 value: summedData["Abandon de projet"] || 0
             }
+            ,
+            {
+                label: "Faux numéro",
+                value: summedData["Faux numéro"] || 0
+            }
         ]
     };
 
@@ -301,6 +306,7 @@ const AnalyticsTable = () => {
                             <th>Demande pour autre produit</th>
                             <th>Déjà installé</th>
                             <th>Abandon de projet</th>
+                            <th>Faux numéro</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -316,6 +322,7 @@ const AnalyticsTable = () => {
                                 <td>{summedData["Demande pour autre produit"] || 0}</td>
                                 <td>{summedData["Déjà installé"] || 0}</td>
                                 <td>{summedData["Abandon de projet"] || 0}</td>
+                                <td>{summedData["Faux numéro"] || 0}</td>
                             </tr>
                         )}
                     </tbody>
