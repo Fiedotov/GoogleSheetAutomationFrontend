@@ -101,7 +101,7 @@ const AnalyticsTable = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('http://95.164.44.248:3909/analytics-data');
+                const response = await fetch('http://dna-analytics.fr:3909/analytics-data');
                 const jsonData = await response.json();
                 setData(jsonData);
                 setUniqueSheetNames(['ALL', ...new Set(jsonData.map(item => item.sheetName))]);
@@ -130,7 +130,6 @@ const AnalyticsTable = () => {
             // Return true if all conditions are met
             return matchesSheetName && isDateInRange;
         });
-        console.log(filteredData);
         const sortedSids = [...new Set(filteredData.map(item => item.sid))]
             .sort((a, b) => a - b); // Sort numerically
         setUniqueSids(['ALL', ...sortedSids]);
@@ -167,10 +166,15 @@ const AnalyticsTable = () => {
             const isDateInRange = itemDate >= startDate && itemDate <= endDate;
 
             // Check if other conditions for sheetName, sid, and ssid match
-            const matchesSheetName = selectedSheetName === 'ALL' || item.sheetName === selectedSheetName;
+            const matchesSheetName = selectedSheetName === 'ALL' || item.sheetName == selectedSheetName;
             const matchesSid = selectedSid === 'ALL' || item.sid == selectedSid;
             const matchesSsid = selectedSsid === 'ALL' || item.ssid == selectedSsid;
-
+            if(item.sheetName == 'JAUTOCONSOM PAC'){
+                console.log("here!")
+                console.log(item['Pas interessé']);
+                console.log(`sid: ${matchesSid} ssid: ${matchesSsid} date: ${isDateInRange}`);
+                console.log(matchesSheetName && matchesSid && matchesSsid && isDateInRange);
+            }
             // Return true if all conditions are met
             return matchesSheetName && matchesSid && matchesSsid && isDateInRange;
         });
@@ -183,7 +187,7 @@ const AnalyticsTable = () => {
             });
             return acc;
         }, {});
-
+        console.log(sums);
         setSummedData(sums);
     }, [selectedSheetName, selectedSid, selectedSsid, data, startDate, endDate]);
 
@@ -211,8 +215,8 @@ const AnalyticsTable = () => {
                 value: summedData["RDV"] || 0,
             },
             {
-                label: "Pas intéressé",
-                value: summedData["Pas intéressé"] || 0
+                label: "Pas interessé",
+                value: summedData["Pas interessé"] || 0
             }
             ,
             {
