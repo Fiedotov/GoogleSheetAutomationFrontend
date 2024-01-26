@@ -235,7 +235,7 @@ const AnalyticsTable = () => {
             }
             ,
             {
-                label: "Déjà installé",
+                label: "Dejà installé",
                 value: summedData["Deja installé"] || 0
             }
             ,
