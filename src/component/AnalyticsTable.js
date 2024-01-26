@@ -299,11 +299,11 @@ const AnalyticsTable = () => {
                             <th>RDV</th>
                             <th>A Rappeler</th>
                             <th>NRP</th>
-                            <th>Pas intéressé</th>
+                            <th>Pas interessé</th>
                             <th>Locataire</th>
                             <th>Pas la bonne personne</th>
                             <th>Demande pour autre produit</th>
-                            <th>Déjà installé</th>
+                            <th>Deja installé</th>
                             <th>Abandon de projet</th>
                         </tr>
                     </thead>
@@ -314,11 +314,11 @@ const AnalyticsTable = () => {
                                 <td>{summedData["RDV"] || 0}</td>
                                 <td>{summedData["A Rappeler"] || 0}</td>
                                 <td>{summedData["NRP"] || 0}</td>
-                                <td>{summedData["Pas intéressé"] || 0}</td>
+                                <td>{summedData["Pas interessé"] || 0}</td>
                                 <td>{summedData["Locataire"] || 0}</td>
                                 <td>{summedData["Pas la bonne personne"] || 0}</td>
                                 <td>{summedData["Demande pour autre produit"] || 0}</td>
-                                <td>{summedData["Déjà installé"] || 0}</td>
+                                <td>{summedData["Deja installé"] || 0}</td>
                                 <td>{summedData["Abandon de projet"] || 0}</td>
                             </tr>
                         )}
